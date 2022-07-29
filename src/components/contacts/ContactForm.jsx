@@ -1,27 +1,25 @@
 import { Component } from "react";
 import css from "./Contacts.module.css";
-
+import { PropTypes } from 'prop-types';
 export class Form extends Component {
   state = {
-    name: "",
-    number: "",
+    name: '',
+    number: '',
   };
-
-  handleChange = (e) => {
+  static propTypes = {
+    onSubmit: PropTypes.func,
+  };
+  handleChange = e => {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
-
+    console.log(this.state);
     this.props.onSubmit(this.state);
-  
+
     e.target.reset();
-    this.setState({
-      name: "",
-      number: "",
-    });
   };
 
   render() {
